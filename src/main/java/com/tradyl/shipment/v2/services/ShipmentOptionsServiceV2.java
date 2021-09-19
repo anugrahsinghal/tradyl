@@ -6,6 +6,7 @@ import com.tradyl.shipment.common.services.ShipmentOptionsService;
 import com.tradyl.shipment.v2.entities.CountryWeightPricing;
 import com.tradyl.shipment.v2.entities.DeliveryPricing;
 import com.tradyl.shipment.v2.entities.ProductCodeSurcharge;
+import com.tradyl.shipment.v2.excpetions.DeliveryTypeNotSupported;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -31,7 +32,7 @@ public class ShipmentOptionsServiceV2 implements ShipmentOptionsService {
 		final List<ShipmentOption> shipmentOptions = deliveryServices.stream()
 				.map(deliveryService -> new ShipmentOption(
 						deliveryService.getName(),
-						deliveryService.getPrice() + shipmentPriceWithTax,
+						shipmentPriceWithTax + deliveryService.getPrice(),
 						deliveryService.getPeriod()))
 				.collect(Collectors.toList());
 
@@ -64,18 +65,16 @@ public class ShipmentOptionsServiceV2 implements ShipmentOptionsService {
 		final Optional<DeliveryPricing> deliveryServiceOpt = deliveryPricingService.getDeliveryServiceDetails(deliveryType);
 
 		if (deliveryServiceOpt.isPresent()) {
-
 			DeliveryPricing deliveryServiceDetails = deliveryServiceOpt.get();
-
 			final double totalPrice = deliveryServiceDetails.getPrice() + shipmentPriceWithTax;
-
 			//noinspection UnnecessaryLocalVariable
-			ShipmentOption shipmentOption = new ShipmentOption(deliveryServiceDetails.getName(), totalPrice, deliveryServiceDetails.getPeriod());
+			final ShipmentOption shipmentOption = new ShipmentOption(deliveryServiceDetails.getName(), totalPrice, deliveryServiceDetails.getPeriod());
 
 			return shipmentOption;
 		} else {
-			throw new UnsupportedOperationException("Delivery Type not supported");
+			throw new DeliveryTypeNotSupported("Delivery Type not supported");
 		}
+
 	}
 
 }
