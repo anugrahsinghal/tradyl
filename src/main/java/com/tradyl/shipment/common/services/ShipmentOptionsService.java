@@ -1,4 +1,4 @@
-package com.tradyl.shipment.v1.services;
+package com.tradyl.shipment.common.services;
 
 import com.tradyl.shipment.common.dto.Shipment;
 import com.tradyl.shipment.common.dto.ShipmentOption;

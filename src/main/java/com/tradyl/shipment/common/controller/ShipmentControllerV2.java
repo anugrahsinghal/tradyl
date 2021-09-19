@@ -11,20 +11,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class ShipmentController {
+public class ShipmentControllerV2 {
 
 	private final ShipmentOptionsService shipmentOptionsService;
 
-	public ShipmentController(@Qualifier("OOPS_BASED") ShipmentOptionsService shipmentOptionsService) {
+	public ShipmentControllerV2(@Qualifier("DB_BASED") ShipmentOptionsService shipmentOptionsService) {
 		this.shipmentOptionsService = shipmentOptionsService;
 	}
 
-	@GetMapping(value = "api/v1/shipment/options")
+	@GetMapping(value = "api/v2/shipment/options")
 	public List<ShipmentOption> getShipmentOptions(@RequestBody Shipment shipment) {
 		return shipmentOptionsService.getShipmentOptions(shipment);
 	}
 
-	@GetMapping(value = "api/v1/shipment/{deliveryType}")
+	@GetMapping(value = "api/v2/shipment/{deliveryType}")
 	public ShipmentOption getShipmentOption(@RequestBody Shipment shipment, @PathVariable String deliveryType) {
 		return shipmentOptionsService.getShipmentOption(shipment, deliveryType);
 	}
