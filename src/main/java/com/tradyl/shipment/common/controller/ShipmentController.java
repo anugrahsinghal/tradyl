@@ -5,8 +5,8 @@ import com.tradyl.shipment.common.dto.ShipmentOption;
 import com.tradyl.shipment.common.services.ShipmentOptionsService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,12 +19,12 @@ public class ShipmentController {
 		this.shipmentOptionsService = shipmentOptionsService;
 	}
 
-	@GetMapping(value = "api/v1/shipment/options")
+	@PostMapping(value = "api/v1/shipment/options")
 	public List<ShipmentOption> getShipmentOptions(@RequestBody Shipment shipment) {
 		return shipmentOptionsService.getShipmentOptions(shipment);
 	}
 
-	@GetMapping(value = "api/v1/shipment/{deliveryType}")
+	@PostMapping(value = "api/v1/shipment/{deliveryType}")
 	public ShipmentOption getShipmentOption(@RequestBody Shipment shipment, @PathVariable String deliveryType) {
 		return shipmentOptionsService.getShipmentOption(shipment, deliveryType);
 	}
