@@ -1,10 +1,13 @@
+### API-USAGE
+
 ```shell
-curl -X POST --location "https://tradyl.anugrahsinghal.repl.co/api/v2/shipment/options" \
-    -H "Content-Type: application/json" \ 
-    -d "{\"productCode\": \"123\",\"totalWeight\": \"2\",\"country\": \"USA\"}"
+curl -X POST --location "https://tradyl.anugrahsinghal.repl.co/api/v2/shipment/options" -H "Content-Type: application/json"  -d "{\"productCode\": \"123\",\"totalWeight\": \"2\",\"country\": \"USA\"}"
 ```
 
-1. Currently only 2 Countries USA/UK supported
+1. Currently only 2 Countries `USA/UK` supported
+---
+
+### Link to the sheet
 
 [Go to Sheet](https://docs.google.com/spreadsheets/d/1LqvZjRIiVPRnLlSy0Sks2A-msFB1k96NtAT3b-aAFdA/edit?usp=sharing)
 
