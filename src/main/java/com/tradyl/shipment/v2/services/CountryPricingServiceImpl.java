@@ -1,6 +1,7 @@
 package com.tradyl.shipment.v2.services;
 
 import com.tradyl.shipment.v2.entities.CountryWeightPricing;
+import com.tradyl.shipment.v2.excpetions.ItemTooHeavyException;
 import com.tradyl.shipment.v2.repositories.CountryWeightPricingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,8 @@ public class CountryPricingServiceImpl implements CountryPricingService {
 
 	@Override
 	public CountryWeightPricing getPriceBandForWeight(double weight, String country) {
-		return weightPricingRepository.findCountryPricingForWeight(country, weight);
+		return weightPricingRepository.findCountryPricingForWeight(country, weight)
+				.orElseThrow(() -> new ItemTooHeavyException(weight + " is too heavy"));
 	}
 
 }

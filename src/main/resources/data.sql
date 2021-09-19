@@ -8,6 +8,9 @@ INSERT INTO country_weight_pricing(id, country, price, min_weight_inclusive, max
 values (3, 'USA', 20.0, 10.0, 15.0)
 ON CONFLICT DO NOTHING;
 INSERT INTO country_weight_pricing(id, country, price, min_weight_inclusive, max_weight_exclusive)
+values (4, 'UK', 8.0, 0.0, 6.0)
+ON CONFLICT DO NOTHING;
+INSERT INTO country_weight_pricing(id, country, price, min_weight_inclusive, max_weight_exclusive)
 values (5, 'UK', 10.0, 6.0, 12.0)
 ON CONFLICT DO NOTHING;
 INSERT INTO country_weight_pricing(id, country, price, min_weight_inclusive, max_weight_exclusive)
